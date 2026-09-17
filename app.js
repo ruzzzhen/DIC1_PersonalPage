@@ -165,7 +165,116 @@ revealEls.forEach((el) => observer.observe(el));
 $("year").textContent = new Date().getFullYear();
 
 /* =========================================================
-   8. Particle 背景動畫（輕量粒子 + 連線）
+   8. 可編輯 Profile（姓名 + 自我介紹，存 localStorage）
+   ========================================================= */
+(function initEditableProfile() {
+  const nameEl = $("nameText");
+  const bioEl = $("bioText");
+  const editBtn = $("editProfile");
+  const resetBtn = $("resetProfile");
+  if (!nameEl || !bioEl || !editBtn) return;
+
+  // 記住預設值，供「還原」使用
+  const DEFAULT_NAME = nameEl.textContent.trim();
+  const DEFAULT_BIO = bioEl.textContent.trim();
+
+  // 載入先前儲存的內容
+  const savedName = localStorage.getItem("profileName");
+  const savedBio = localStorage.getItem("profileBio");
+  if (savedName) nameEl.textContent = savedName;
+  if (savedBio) bioEl.textContent = savedBio;
+
+  let editing = false;
+  editBtn.addEventListener("click", () => {
+    editing = !editing;
+    [nameEl, bioEl].forEach((el) => {
+      el.contentEditable = editing ? "true" : "false";
+      el.classList.toggle("editing", editing);
+    });
+    if (editing) {
+      editBtn.textContent = "💾 儲存";
+      nameEl.focus();
+    } else {
+      // 結束編輯 → 寫入 localStorage
+      localStorage.setItem("profileName", nameEl.textContent.trim());
+      localStorage.setItem("profileBio", bioEl.textContent.trim());
+      editBtn.textContent = "✏️ 編輯 Profile";
+      showToast("Profile 已儲存 ✔");
+    }
+  });
+
+  // 還原預設
+  resetBtn.addEventListener("click", () => {
+    localStorage.removeItem("profileName");
+    localStorage.removeItem("profileBio");
+    nameEl.textContent = DEFAULT_NAME;
+    bioEl.textContent = DEFAULT_BIO;
+    showToast("已還原預設 Profile");
+  });
+})();
+
+/* =========================================================
+   9. 打字動效職稱（自動輪播）
+   ========================================================= */
+(function initTypingRoles() {
+  const el = $("roleText");
+  if (!el) return;
+  const ROLES = ["LLM Agent Developer", "NLP Enthusiast", "MCP Builder", "AI 研究生"];
+  let roleIdx = 0, charIdx = 0, deleting = false;
+
+  function type() {
+    const current = ROLES[roleIdx];
+    if (!deleting) {
+      el.textContent = current.slice(0, ++charIdx);
+      if (charIdx === current.length) {          // 打完 → 停頓後開始刪除
+        deleting = true;
+        setTimeout(type, 1400);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --charIdx);
+      if (charIdx === 0) {                        // 刪完 → 換下一個
+        deleting = false;
+        roleIdx = (roleIdx + 1) % ROLES.length;
+      }
+    }
+    setTimeout(type, deleting ? 45 : 95);
+  }
+  type();
+})();
+
+/* =========================================================
+   10. 捲動進度條
+   ========================================================= */
+(function initScrollProgress() {
+  const bar = $("scrollProgress");
+  if (!bar) return;
+  function update() {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    const ratio = max > 0 ? doc.scrollTop / max : 0;
+    bar.style.width = (ratio * 100) + "%";
+  }
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+})();
+
+/* =========================================================
+   11. 回到頂端按鈕
+   ========================================================= */
+(function initBackToTop() {
+  const btn = $("backToTop");
+  if (!btn) return;
+  window.addEventListener("scroll", () => {
+    btn.classList.toggle("show", window.scrollY > 400);
+  }, { passive: true });
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+
+/* =========================================================
+   12. Particle 背景動畫（輕量粒子 + 連線）
    ========================================================= */
 (function initParticles() {
   const canvas = $("particles");

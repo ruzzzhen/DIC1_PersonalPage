@@ -380,6 +380,60 @@ body.light .tag { color: #e11d48; }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* ---------- 捲動進度條 ---------- */
+#scrollProgress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--accent-grad);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ---------- 打字職稱 ---------- */
+.roles {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--neon-blue);
+  font-size: 0.95rem;
+  margin: 0.15rem 0 0.4rem;
+  min-height: 1.4em;
+}
+.roles .cursor {
+  color: var(--neon-purple);
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---------- 編輯中的欄位 ---------- */
+[contenteditable="true"].editing {
+  outline: 2px dashed var(--neon-purple);
+  outline-offset: 4px;
+  border-radius: 6px;
+  background: rgba(251, 113, 133, 0.08);
+  cursor: text;
+}
+
+/* ---------- 回到頂端按鈕 ---------- */
+#backToTop {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--accent-grad);
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+  z-index: 90;
+}
+#backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+#backToTop:hover { transform: translateY(-3px); box-shadow: var(--card-hover-shadow); }
+
 /* ---------- 進場動畫 (reveal) ---------- */
 .reveal {
   opacity: 0;

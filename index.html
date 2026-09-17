@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 捲動進度條 -->
+  <div id="scrollProgress" aria-hidden="true"></div>
+
   <!-- ===== Particle 背景畫布 ===== -->
   <canvas id="particles" aria-hidden="true"></canvas>
 
@@ -42,16 +45,15 @@
 
       <div class="profile-info">
         <p class="greeting" id="greeting">Hello 👋</p>
-        <h1 class="name">侯如蓁 <span class="name-en">/ Ru-Zhen Hou</span></h1>
+        <h1 class="name"><span id="nameText">侯如蓁</span> <span class="name-en">/ Ru-Zhen Hou</span></h1>
+        <p class="roles"><span id="roleText"></span><span class="cursor" aria-hidden="true">|</span></p>
         <p class="major">資訊工程學系 · Computer Science &amp; Engineering</p>
-        <p class="bio">
-          我是中興大學資工所的碩士生,專注於 LLM Agent 與 MCP 的應用開發。
-          做過醫療語音助理、事實查核系統與校園 RAG 問答,喜歡把複雜的真實需求
-          拆解成清楚的邏輯,再打造成真正能幫到人的 AI 工具。
-        </p>
+        <p class="bio" id="bioText">我是中興大學資工所的碩士生,專注於 LLM Agent 與 MCP 的應用開發。做過醫療語音助理、事實查核系統與校園 RAG 問答,喜歡把複雜的真實需求拆解成清楚的邏輯,再打造成真正能幫到人的 AI 工具。</p>
         <div class="profile-links">
           <a class="btn btn-primary" href="#projects">看看我的作品 →</a>
-          <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://github.com/ruzzzhen" target="_blank" rel="noopener">GitHub</a>
+          <button id="editProfile" class="btn btn-ghost" type="button">✏️ 編輯 Profile</button>
+          <button id="resetProfile" class="btn btn-ghost" type="button">↺ 還原</button>
         </div>
       </div>
     </section>
@@ -184,6 +186,9 @@
     <p>© <span id="year"></span> 侯如蓁 · Built with HTML / CSS / JavaScript</p>
     <p class="footer-sub">Deployed on GitHub Pages</p>
   </footer>
+
+  <!-- 回到頂端按鈕 -->
+  <button id="backToTop" aria-label="回到頂端" title="回到頂端">↑</button>
 
   <!-- Toast 提示（複製成功時顯示） -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
