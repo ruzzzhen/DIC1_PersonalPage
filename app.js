@@ -17,7 +17,7 @@ const clockTimeEl   = $("clockTime");
 const clockDateEl   = $("clockDate");
 const clockPeriodEl = $("clockPeriod");
 const clockTzEl     = $("clockTz");
-const greetingEl    = $("greeting");
+const greetingEl    = $("greetingText");
 
 // 是否使用 24 小時制（從 localStorage 讀取，預設 true）
 let use24Hour = localStorage.getItem("use24Hour") !== "false";
@@ -52,14 +52,35 @@ function updateClock() {
   updateGreeting(now.getHours());
 }
 
-/** 依時間顯示 Good Morning / Afternoon / Evening */
+let lastGreeting = "";   // 記住上次的問候語，避免每秒重打
+let greetTimer = null;
+
+/** 打字效果：一個字一個字打出 text */
+function typeGreeting(text) {
+  clearTimeout(greetTimer);
+  const chars = Array.from(text);   // 以字元（含 emoji）為單位
+  let i = 0;
+  (function step() {
+    greetingEl.textContent = chars.slice(0, i).join("");
+    if (i < chars.length) {
+      i++;
+      greetTimer = setTimeout(step, 90);
+    }
+  })();
+}
+
+/** 依時間顯示 Good Morning / Afternoon / Evening（打字呈現） */
 function updateGreeting(hour) {
   let text;
   if (hour < 5)       text = "Good Night 🌙";
   else if (hour < 12) text = "Good Morning ☀️";
   else if (hour < 18) text = "Good Afternoon 🌤️";
   else                text = "Good Evening 🌆";
-  greetingEl.textContent = text;
+  // 只有問候語改變時才重新打字（初次載入 or 跨時段）
+  if (text !== lastGreeting) {
+    lastGreeting = text;
+    typeGreeting(text);
+  }
 }
 
 /** 顯示使用者的時區 */
@@ -214,37 +235,7 @@ $("year").textContent = new Date().getFullYear();
 })();
 
 /* =========================================================
-   9. 打字動效職稱（自動輪播）
-   ========================================================= */
-(function initTypingRoles() {
-  const el = $("roleText");
-  if (!el) return;
-  const ROLES = ["LLM Agent Developer", "NLP Enthusiast", "MCP Builder", "AI 研究生"];
-  let roleIdx = 0, charIdx = 0, deleting = false;
-
-  function type() {
-    const current = ROLES[roleIdx];
-    if (!deleting) {
-      el.textContent = current.slice(0, ++charIdx);
-      if (charIdx === current.length) {          // 打完 → 停頓後開始刪除
-        deleting = true;
-        setTimeout(type, 1400);
-        return;
-      }
-    } else {
-      el.textContent = current.slice(0, --charIdx);
-      if (charIdx === 0) {                        // 刪完 → 換下一個
-        deleting = false;
-        roleIdx = (roleIdx + 1) % ROLES.length;
-      }
-    }
-    setTimeout(type, deleting ? 45 : 95);
-  }
-  type();
-})();
-
-/* =========================================================
-   10. 捲動進度條
+   9. 捲動進度條
    ========================================================= */
 (function initScrollProgress() {
   const bar = $("scrollProgress");
@@ -260,7 +251,7 @@ $("year").textContent = new Date().getFullYear();
 })();
 
 /* =========================================================
-   11. 回到頂端按鈕
+   10. 回到頂端按鈕
    ========================================================= */
 (function initBackToTop() {
   const btn = $("backToTop");
@@ -274,7 +265,7 @@ $("year").textContent = new Date().getFullYear();
 })();
 
 /* =========================================================
-   12. Particle 背景動畫（輕量粒子 + 連線）
+   11. Particle 背景動畫（輕量粒子 + 連線）
    ========================================================= */
 (function initParticles() {
   const canvas = $("particles");

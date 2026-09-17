@@ -391,15 +391,8 @@ body.light .tag { color: #e11d48; }
   transition: width 0.1s linear;
 }
 
-/* ---------- 打字職稱 ---------- */
-.roles {
-  font-family: "JetBrains Mono", monospace;
-  color: var(--neon-blue);
-  font-size: 0.95rem;
-  margin: 0.15rem 0 0.4rem;
-  min-height: 1.4em;
-}
-.roles .cursor {
+/* ---------- 打字游標（問候語用） ---------- */
+.cursor {
   color: var(--neon-purple);
   animation: blink 1s step-end infinite;
 }
