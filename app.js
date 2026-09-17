@@ -186,56 +186,7 @@ revealEls.forEach((el) => observer.observe(el));
 $("year").textContent = new Date().getFullYear();
 
 /* =========================================================
-   8. 可編輯 Profile（姓名 + 自我介紹，存 localStorage）
-   ========================================================= */
-(function initEditableProfile() {
-  const nameEl = $("nameText");
-  const bioEl = $("bioText");
-  const editBtn = $("editProfile");
-  const resetBtn = $("resetProfile");
-  if (!nameEl || !bioEl || !editBtn) return;
-
-  // 記住預設值，供「還原」使用
-  const DEFAULT_NAME = nameEl.textContent.trim();
-  const DEFAULT_BIO = bioEl.textContent.trim();
-
-  // 載入先前儲存的內容
-  const savedName = localStorage.getItem("profileName");
-  const savedBio = localStorage.getItem("profileBio");
-  if (savedName) nameEl.textContent = savedName;
-  if (savedBio) bioEl.textContent = savedBio;
-
-  let editing = false;
-  editBtn.addEventListener("click", () => {
-    editing = !editing;
-    [nameEl, bioEl].forEach((el) => {
-      el.contentEditable = editing ? "true" : "false";
-      el.classList.toggle("editing", editing);
-    });
-    if (editing) {
-      editBtn.textContent = "💾 儲存";
-      nameEl.focus();
-    } else {
-      // 結束編輯 → 寫入 localStorage
-      localStorage.setItem("profileName", nameEl.textContent.trim());
-      localStorage.setItem("profileBio", bioEl.textContent.trim());
-      editBtn.textContent = "✏️ 編輯 Profile";
-      showToast("Profile 已儲存 ✔");
-    }
-  });
-
-  // 還原預設
-  resetBtn.addEventListener("click", () => {
-    localStorage.removeItem("profileName");
-    localStorage.removeItem("profileBio");
-    nameEl.textContent = DEFAULT_NAME;
-    bioEl.textContent = DEFAULT_BIO;
-    showToast("已還原預設 Profile");
-  });
-})();
-
-/* =========================================================
-   9. 捲動進度條
+   8. 捲動進度條
    ========================================================= */
 (function initScrollProgress() {
   const bar = $("scrollProgress");
@@ -251,7 +202,7 @@ $("year").textContent = new Date().getFullYear();
 })();
 
 /* =========================================================
-   10. 回到頂端按鈕
+   9. 回到頂端按鈕
    ========================================================= */
 (function initBackToTop() {
   const btn = $("backToTop");
@@ -265,7 +216,7 @@ $("year").textContent = new Date().getFullYear();
 })();
 
 /* =========================================================
-   11. Particle 背景動畫（輕量粒子 + 連線）
+   10. Particle 背景動畫（輕量粒子 + 連線）
    ========================================================= */
 (function initParticles() {
   const canvas = $("particles");
