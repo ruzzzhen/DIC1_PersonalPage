@@ -398,6 +398,15 @@ body.light .tag { color: #e11d48; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ---------- 編輯中的欄位 ---------- */
+[contenteditable="true"].editing {
+  outline: 2px dashed var(--neon-purple);
+  outline-offset: 4px;
+  border-radius: 6px;
+  background: rgba(251, 113, 133, 0.08);
+  cursor: text;
+}
+
 /* ---------- 回到頂端按鈕 ---------- */
 #backToTop {
   position: fixed;

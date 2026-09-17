@@ -45,12 +45,14 @@
 
       <div class="profile-info">
         <p class="greeting"><span id="greetingText"></span><span class="cursor" aria-hidden="true">|</span></p>
-        <h1 class="name">侯如蓁 <span class="name-en">/ Ru-Zhen Hou</span></h1>
+        <h1 class="name"><span id="nameText">侯如蓁</span> <span class="name-en">/ Ru-Zhen Hou</span></h1>
         <p class="major">資訊工程學系 · Computer Science &amp; Engineering</p>
-        <p class="bio">我是中興大學資工所的碩士生,專注於 LLM Agent 與 MCP 的應用開發。做過醫療語音助理、事實查核系統與校園 RAG 問答,喜歡把複雜的真實需求拆解成清楚的邏輯,再打造成真正能幫到人的 AI 工具。</p>
+        <p class="bio" id="bioText">我是中興大學資工所的碩士生,專注於 LLM Agent 與 MCP 的應用開發。做過醫療語音助理、事實查核系統與校園 RAG 問答,喜歡把複雜的真實需求拆解成清楚的邏輯,再打造成真正能幫到人的 AI 工具。</p>
         <div class="profile-links">
           <a class="btn btn-primary" href="#projects">看看我的作品 →</a>
           <a class="btn btn-ghost" href="https://github.com/ruzzzhen" target="_blank" rel="noopener">GitHub</a>
+          <button id="editProfile" class="btn btn-ghost" type="button">✏️ 編輯 Profile</button>
+          <button id="resetProfile" class="btn btn-ghost" type="button">↺ 還原</button>
         </div>
       </div>
     </section>
