@@ -1,9 +1,14 @@
 # 🌐 侯如蓁 · Personal Page
 
 一個使用 **純 HTML + CSS + JavaScript**(不使用任何框架)打造的個人網站,
-可直接部署在 **GitHub Pages** 上。
+部署於 **GitHub Pages**。
 
-> 主題風格:Glassmorphism(玻璃擬態)+ Dark Mode + 霓虹紫藍配色
+> 主題風格:Glassmorphism(玻璃擬態)+ Dark Mode · 珊瑚橘 + 暖黃配色
+
+## 🔗 連結
+
+- **Live Website**:<https://ruzzzhen.github.io/DIC1_PersonalPage/>
+- **GitHub Repository**:<https://github.com/ruzzzhen/DIC1_PersonalPage>
 
 ---
 
@@ -11,9 +16,9 @@
 
 | 區塊 | 說明 |
 |------|------|
-| 👤 **Profile** | 姓名、科系、漸層 Avatar 佔位、自我介紹 |
-| 🛠 **Skills** | Python、C/C++、NLP、MCP 技能卡片(含圖示與 hover 動畫) |
-| 🚀 **Projects** | 專案卡片:名稱、描述、技術標籤、GitHub 連結 |
+| 👤 **Profile** | 姓名、科系、個人頭像、自我介紹 |
+| 🛠 **Skills** | 8 項技能:Python、C/C++、NLP、MCP、RAG、PyTorch、LLM Agent、Backend |
+| 🚀 **Projects** | 4 個專案:Medical Agent、Fact Checking System、AI Learning Assistant、LLM Course Q&A |
 | 🕐 **Live Clock** | JavaScript 即時時鐘,每秒自動更新 HH:MM:SS |
 
 ### 🎁 加分功能
@@ -33,10 +38,11 @@
 ## 📁 檔案結構
 
 ```
-DIC-1/
+DIC1_PersonalPage/
 ├── index.html   # 網頁結構
-├── style.css    # 樣式與 RWD、動畫
+├── style.css    # 樣式、RWD、動畫
 ├── app.js       # 時鐘、互動、粒子背景邏輯
+├── profile.jpg  # 頭像圖片
 └── README.md    # 說明文件
 ```
 
@@ -44,41 +50,32 @@ DIC-1/
 
 ## 💻 如何在本機開啟
 
-**方法一(最簡單):** 直接用瀏覽器開啟 `index.html` 即可。
+**方法一(最簡單):** 直接用瀏覽器開啟 `index.html`。
 
-**方法二(建議,避免部分瀏覽器限制):** 用本機伺服器開啟
+**方法二(建議):** 用本機伺服器開啟,可確保剪貼簿等功能正常
 
 ```bash
-# 使用 Python 內建伺服器
 python3 -m http.server 8000
 ```
 
 接著在瀏覽器開啟 <http://localhost:8000>
 
-> 💡 使用本機伺服器可確保「Copy Timestamp」的剪貼簿功能在所有瀏覽器正常運作。
-
 ---
 
-## 🚀 部署到 GitHub Pages
+## 🚀 部署方式(GitHub Pages)
 
-1. 建立 GitHub Repository(例如 `DIC1_PersonalPage`)
-2. 將所有檔案 **Commit → Push** 到 `main` 分支
-3. 進入 Repository 的 **Settings → Pages**
-4. 設定 **Branch: `main`** / **Folder: `/ (root)`**,按 Save
-5. 稍等片刻,即可透過以下網址開啟你的網站:
-
-```
-https://YOUR_NAME.github.io/DIC1_PersonalPage/
-```
+1. 將程式碼 Push 到 GitHub 的 `main` 分支
+2. 進入 Repository 的 **Settings → Pages**
+3. **Source** 選 `Deploy from a branch`,**Branch** 選 `main` / `/ (root)`,按 Save
+4. 稍待 1~2 分鐘即完成部署,即可透過 Live Website 網址開啟
 
 ---
 
 ## 🎨 客製化
 
-- **換成自己的照片**:在 `index.html` 中把 `.avatar` 區塊改成 `<img src="your-photo.jpg" alt="頭像">`
-- **修改技能 / 專案**:直接編輯 `index.html` 對應區塊
-- **調整配色**:修改 `style.css` 最上方的 `:root` CSS 變數(如 `--neon-purple`、`--neon-blue`)
-- **更新 GitHub 連結**:把 `href="#"` 換成你的實際連結
+- **換頭像**:替換 `profile.jpg`(建議正方形圖片)
+- **修改技能 / 專案**:編輯 `index.html` 對應區塊
+- **調整配色**:修改 `style.css` 最上方的 `:root` CSS 變數(如 `--neon-purple`、`--accent-grad`)
 
 ---
 
