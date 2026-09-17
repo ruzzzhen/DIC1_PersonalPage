@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="侯如蓁 — 資訊工程學系 個人網站 Personal Page" />
+  <title>侯如蓁 · Personal Page</title>
+
+  <!-- Google Fonts：Space Grotesk（標題）+ Noto Sans TC（中文內文）+ JetBrains Mono（時鐘） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== Particle 背景畫布 ===== -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- ===== 頁首導覽列 ===== -->
+  <header class="topbar">
+    <a href="#profile" class="logo">RJ<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="#profile">Profile</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#clock">Clock</a>
+    </nav>
+    <!-- 深色 / 淺色模式切換 -->
+    <button id="themeToggle" class="theme-toggle" title="切換深色 / 淺色模式" aria-label="切換主題">
+      <span class="theme-icon">🌙</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ===== 1. Profile 區塊 ===== -->
+    <section id="profile" class="profile reveal">
+      <!-- 個人照片頭像 -->
+      <div class="avatar" aria-label="個人頭像">
+        <img src="profile.jpg" alt="侯如蓁的照片" class="avatar-img" />
+      </div>
+
+      <div class="profile-info">
+        <p class="greeting" id="greeting">Hello 👋</p>
+        <h1 class="name">侯如蓁 <span class="name-en">/ Ru-Zhen Hou</span></h1>
+        <p class="major">資訊工程學系 · Computer Science &amp; Engineering</p>
+        <p class="bio">
+          我是中興大學資工所的碩士生,專注於 LLM Agent 與 MCP 的應用開發。
+          做過醫療語音助理、事實查核系統與校園 RAG 問答,喜歡把複雜的真實需求
+          拆解成清楚的邏輯,再打造成真正能幫到人的 AI 工具。
+        </p>
+        <div class="profile-links">
+          <a class="btn btn-primary" href="#projects">看看我的作品 →</a>
+          <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. Skills 區塊 ===== -->
+    <section id="skills" class="section reveal">
+      <h2 class="section-title"><span class="title-index">01</span> Skills</h2>
+      <p class="section-sub">我常用與正在鑽研的技術</p>
+
+      <div class="skill-grid">
+        <div class="skill-card"><span class="skill-icon">🐍</span><h3>Python</h3><p>資料處理、腳本、AI 開發主力語言</p></div>
+        <div class="skill-card"><span class="skill-icon">⚙️</span><h3>C / C++</h3><p>系統程式與演算法基礎</p></div>
+        <div class="skill-card"><span class="skill-icon">💬</span><h3>NLP</h3><p>自然語言處理、文本分析與模型應用</p></div>
+        <div class="skill-card"><span class="skill-icon">🔌</span><h3>MCP</h3><p>Model Context Protocol 工具開發與整合</p></div>
+        <div class="skill-card"><span class="skill-icon">📚</span><h3>RAG</h3><p>檢索增強生成,提升回答的事實準確度</p></div>
+        <div class="skill-card"><span class="skill-icon">🔥</span><h3>PyTorch</h3><p>深度學習模型訓練與 Fine-Tuning</p></div>
+        <div class="skill-card"><span class="skill-icon">🤖</span><h3>LLM Agent</h3><p>Agent 系統設計與 Prompt Engineering</p></div>
+        <div class="skill-card"><span class="skill-icon">🌐</span><h3>Backend</h3><p>Flask / FastAPI、MongoDB、Redis</p></div>
+      </div>
+    </section>
+
+    <!-- ===== 3. Projects 區塊 ===== -->
+    <section id="projects" class="section reveal">
+      <h2 class="section-title"><span class="title-index">02</span> Projects</h2>
+      <p class="section-sub">正在進行或規劃中的專案</p>
+
+      <div class="project-grid">
+        <!-- 專案卡片 1：Medical Agent -->
+        <article class="project-card">
+          <div class="project-head">
+            <span class="project-emoji">🏥</span>
+            <h3>Medical Agent for Hospital Information</h3>
+          </div>
+          <p class="project-date">2025.09 – Present</p>
+          <p class="project-desc">
+            多模態醫院助理,支援文字與語音輸入(含台語)。以 MCP 為核心整合醫院服務、
+            院內導航與病患互動流程,並串接機械手臂,能以自然語言指令協助病房內的患者。
+          </p>
+          <div class="tech-tags">
+            <span class="tag">MCP</span>
+            <span class="tag">LLM</span>
+            <span class="tag">Agent</span>
+            <span class="tag">ASR</span>
+          </div>
+        </article>
+
+        <!-- 專案卡片 2：Fact Checking System -->
+        <article class="project-card">
+          <div class="project-head">
+            <span class="project-emoji">🔍</span>
+            <h3>Fact Checking System</h3>
+          </div>
+          <p class="project-date">2025.09 – Present</p>
+          <p class="project-desc">
+            事實查核系統,結合主題模板、網路搜尋、可信度評分與以圖反搜進行陳述驗證。
+            設計主題分類與證據驗證流程,並以 MCP 編排自動化、迭代式的證據檢索與驗證。
+          </p>
+          <div class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MCP</span>
+            <span class="tag">Knowledge Graph</span>
+          </div>
+        </article>
+
+        <!-- 專案卡片 3：AI Learning Assistant -->
+        <article class="project-card">
+          <div class="project-head">
+            <span class="project-emoji">🎓</span>
+            <h3>AI Learning Assistant</h3>
+          </div>
+          <p class="project-date">2025.09 – Present</p>
+          <p class="project-desc">
+            校園問答 Agent,處理課程資訊、圖書館預約、教職員查詢與校規等問題。
+            透過整合 RAG 與 MCP,大幅提升回答的事實準確度與領域可靠性。
+          </p>
+          <div class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">RAG</span>
+            <span class="tag">MCP</span>
+          </div>
+        </article>
+
+        <!-- 專案卡片 4：LLM Course Q&A -->
+        <article class="project-card">
+          <div class="project-head">
+            <span class="project-emoji">🤖</span>
+            <h3>LLM Course Q&amp;A System</h3>
+          </div>
+          <p class="project-date">2024.06 – 2024.12</p>
+          <p class="project-desc">
+            以 LINE Bot 打造的課程問答機器人,運用 LLM 自動評分與回饋,並設計 prompt 式
+            評估流程產生分數與說明。後端以 Flask + MongoDB + Redis 建置,附管理後台監控學習表現。
+          </p>
+          <div class="tech-tags">
+            <span class="tag">LLM</span>
+            <span class="tag">Flask</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Redis</span>
+            <span class="tag">LINE Bot</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 4. Live Clock 區塊 ===== -->
+    <section id="clock" class="section reveal">
+      <h2 class="section-title"><span class="title-index">03</span> Live Clock</h2>
+      <p class="section-sub">即時時鐘 · 每秒自動更新</p>
+
+      <div class="clock-card">
+        <div class="clock-date" id="clockDate">—</div>
+        <div class="clock-time" id="clockTime">00:00:00</div>
+        <div class="clock-meta">
+          <span class="clock-period" id="clockPeriod"></span>
+          <span class="clock-tz" id="clockTz">🌍 —</span>
+        </div>
+
+        <div class="clock-controls">
+          <button id="formatToggle" class="btn btn-ghost btn-sm">24H / 12H</button>
+          <button id="copyBtn" class="btn btn-ghost btn-sm">📋 Copy Timestamp</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 頁尾 ===== -->
+  <footer class="footer">
+    <p>© <span id="year"></span> 侯如蓁 · Built with HTML / CSS / JavaScript</p>
+    <p class="footer-sub">Deployed on GitHub Pages</p>
+  </footer>
+
+  <!-- Toast 提示（複製成功時顯示） -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

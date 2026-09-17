@@ -1,0 +1,408 @@
+/* =========================================================
+   侯如蓁 · Personal Page — style.css
+   風格：Glassmorphism + Dark Mode + 霓虹紫藍
+   ========================================================= */
+
+/* ---------- CSS 變數（主題色） ---------- */
+:root {
+  /* 深色模式（預設） */
+  --bg-1: #0a0a1a;
+  --bg-2: #12122b;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --text: #eef0ff;
+  --text-dim: #a9adcf;
+  --neon-purple: #fb7185;   /* 主色：珊瑚橘紅 */
+  --neon-blue: #fb923c;     /* 副色：暖橘（文字用，對比較足） */
+  --neon-pink: #f472b6;     /* 點綴：粉 */
+  --accent-grad: linear-gradient(135deg, #fb7185 0%, #fbbf24 100%); /* 珊瑚 → 暖黃 */
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --card-hover-shadow: 0 12px 40px rgba(251, 113, 133, 0.38);
+}
+
+/* 淺色模式（透過 <body class="light"> 切換） */
+body.light {
+  --bg-1: #eef1fb;
+  --bg-2: #dfe4fa;
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(120, 120, 180, 0.25);
+  --text: #1a1a35;
+  --text-dim: #55597e;
+  --shadow: 0 8px 32px rgba(160, 90, 80, 0.18);
+  --card-hover-shadow: 0 12px 40px rgba(251, 113, 133, 0.3);
+}
+
+/* ---------- 基礎重置 ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Noto Sans TC", "Space Grotesk", system-ui, sans-serif;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+  min-height: 100vh;
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background 0.5s ease, color 0.4s ease;
+}
+
+/* Particle 背景畫布 */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- 頁首導覽列 ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: var(--text);
+  text-decoration: none;
+}
+.logo-dot { color: var(--neon-purple); }
+
+.nav { display: flex; gap: 1.4rem; }
+.nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color 0.25s;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: var(--accent-grad);
+  transition: width 0.3s;
+}
+.nav a:hover { color: var(--text); }
+.nav a:hover::after { width: 100%; }
+
+.theme-toggle {
+  cursor: pointer;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  border-radius: 50%;
+  width: 42px; height: 42px;
+  font-size: 1.1rem;
+  display: grid;
+  place-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.theme-toggle:hover { transform: rotate(20deg) scale(1.08); box-shadow: var(--card-hover-shadow); }
+
+/* ---------- 共用容器 ---------- */
+main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.section { margin-top: 5rem; }
+
+.section-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.title-index {
+  font-size: 1rem;
+  color: var(--neon-purple);
+  font-family: "JetBrains Mono", monospace;
+}
+.section-sub { color: var(--text-dim); margin-bottom: 1.8rem; }
+
+/* ---------- 玻璃卡片通用樣式 ---------- */
+.glass, .skill-card, .project-card, .clock-card, .avatar {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- 1. Profile ---------- */
+.profile {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-grad);
+  position: relative;
+  animation: float 5s ease-in-out infinite;
+}
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--accent-grad);
+  filter: blur(22px);
+  opacity: 0.55;
+  z-index: -1;
+}
+.avatar-initials {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+}
+/* 個人照片：填滿圓形，保留漸層外框 */
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+.profile-info { flex: 1; min-width: 260px; }
+.greeting {
+  color: var(--neon-blue);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.6rem;
+  line-height: 1.15;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.name-en { font-size: 1.1rem; opacity: 0.7; -webkit-text-fill-color: var(--text-dim); }
+.major { color: var(--text-dim); margin: 0.4rem 0 1rem; font-weight: 500; }
+.bio { color: var(--text); max-width: 46ch; }
+
+.profile-links { margin-top: 1.4rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+/* 按鈕 */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+}
+.btn-primary { background: var(--accent-grad); color: #fff; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: var(--card-hover-shadow); }
+.btn-ghost {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+}
+.btn-ghost:hover { transform: translateY(-3px); box-shadow: var(--card-hover-shadow); }
+.btn-sm { padding: 0.45rem 1rem; font-size: 0.85rem; }
+
+/* ---------- 2. Skills ---------- */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+.skill-card {
+  border-radius: 18px;
+  padding: 1.6rem 1.4rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--neon-purple);
+}
+.skill-icon { font-size: 2.2rem; display: block; margin-bottom: 0.6rem; }
+.skill-card h3 { font-family: "Space Grotesk", sans-serif; font-size: 1.25rem; margin-bottom: 0.3rem; }
+.skill-card p { color: var(--text-dim); font-size: 0.9rem; }
+
+/* ---------- 3. Projects ---------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.4rem;
+}
+.project-card {
+  border-radius: 20px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--neon-blue);
+}
+.project-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem; }
+.project-emoji { font-size: 1.8rem; }
+.project-head h3 { font-family: "Space Grotesk", sans-serif; font-size: 1.2rem; line-height: 1.3; }
+.project-date {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--neon-blue);
+  margin-bottom: 0.6rem;
+}
+.project-desc { color: var(--text-dim); font-size: 0.92rem; flex: 1; }
+
+.tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+.tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(251, 113, 133, 0.15);
+  border: 1px solid rgba(251, 113, 133, 0.4);
+  color: var(--neon-purple);
+}
+body.light .tag { color: #e11d48; }
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: gap 0.25s, color 0.25s;
+}
+.project-link:hover { gap: 0.8rem; color: var(--neon-purple); }
+
+/* ---------- 4. Live Clock ---------- */
+.clock-card {
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.clock-date {
+  color: var(--text-dim);
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: 1px;
+}
+.clock-time {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(2.8rem, 12vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(251, 113, 133, 0.3);
+  letter-spacing: 2px;
+}
+.clock-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+  color: var(--text-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+.clock-period { color: var(--neon-pink); font-weight: 700; }
+.clock-controls { margin-top: 1.6rem; display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- 頁尾 ---------- */
+.footer {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  border-top: 1px solid var(--glass-border);
+}
+.footer-sub { font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem; }
+
+/* ---------- Toast 提示 ---------- */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--accent-grad);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  box-shadow: var(--card-hover-shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 100;
+  font-size: 0.9rem;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- 進場動畫 (reveal) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- RWD：手機 (≤640px) ---------- */
+@media (max-width: 640px) {
+  .nav { display: none; }               /* 小螢幕隱藏導覽連結，保留 logo 與主題鈕 */
+  .profile { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .bio { margin: 0 auto; }
+  .profile-links { justify-content: center; }
+  .name { font-size: 2rem; }
+  .avatar { width: 130px; height: 130px; }
+  .avatar-initials { font-size: 2.1rem; }
+  main { padding: 1.5rem 1.1rem; }
+  .section { margin-top: 3.5rem; }
+}
+
+/* 尊重使用者的「減少動態效果」偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::after, *::before { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
