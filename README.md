@@ -12,70 +12,57 @@
 
 ---
 
-## ✨ 功能特色
+## 👤 Profile
 
-| 區塊 | 說明 |
+**侯如蓁 / Ru-Zhen Hou** · 資訊工程學系 (Computer Science & Engineering)
+
+我是中興大學資工所的碩士生,專注於 LLM Agent 與 MCP 的應用開發。
+做過醫療語音助理、事實查核系統與校園 RAG 問答,喜歡把複雜的真實需求
+拆解成清楚的邏輯,再打造成真正能幫到人的 AI 工具。
+
+## 🛠 Skills
+
+| 技能 | 說明 |
 |------|------|
-| 👤 **Profile** | 姓名、科系、個人頭像、自我介紹 |
-| 🛠 **Skills** | 8 項技能:Python、C/C++、NLP、MCP、RAG、PyTorch、LLM Agent、Backend |
-| 🚀 **Projects** | 4 個專案:Medical Agent、Fact Checking System、AI Learning Assistant、LLM Course Q&A |
-| 🕐 **Live Clock** | JavaScript 即時時鐘,每秒自動更新 HH:MM:SS |
+| 🐍 Python | 資料處理、腳本、AI 開發主力語言 |
+| ⚙️ C / C++ | 系統程式與演算法基礎 |
+| 💬 NLP | 自然語言處理、文本分析與模型應用 |
+| 🔌 MCP | Model Context Protocol 工具開發與整合 |
+| 📚 RAG | 檢索增強生成,提升回答的事實準確度 |
+| 🔥 PyTorch | 深度學習模型訓練與 Fine-Tuning |
+| 🤖 LLM Agent | Agent 系統設計與 Prompt Engineering |
+| 🌐 Backend | Flask / FastAPI、MongoDB、Redis |
 
-### 🎁 加分功能
+## 🚀 Projects
 
-- 🌅 依時間顯示 **Good Morning / Afternoon / Evening** 問候語
-- 🔄 **12H / 24H** 時間格式切換
-- 🌍 自動偵測並顯示使用者的 **Time Zone**
-- 📋 **Copy Timestamp** 一鍵複製目前時間戳記(ISO 格式)
-- 🌙 **深色 / 淺色** 模式切換
-- 💾 使用 **localStorage** 記住偏好(主題、時間格式)
-- 🌌 **Particle 背景動畫**(粒子 + 連線)
-- 📱 **Responsive Design**,手機(375px)與電腦皆正常顯示
-- ✨ 進場動畫、卡片陰影、hover 特效
+### 🏥 Medical Agent for Hospital Information · 2025.09 – Present
+`MCP` `LLM` `Agent` `ASR`
 
----
+多模態醫院助理,支援文字與語音輸入(含台語)。以 MCP 為核心整合醫院服務、
+院內導航與病患互動流程,並串接機械手臂,能以自然語言指令協助病房內的患者。
 
-## 📁 檔案結構
+### 🔍 Fact Checking System · 2025.09 – Present
+`Python` `Node.js` `MCP` `Knowledge Graph`
 
-```
-DIC1_PersonalPage/
-├── index.html   # 網頁結構
-├── style.css    # 樣式、RWD、動畫
-├── app.js       # 時鐘、互動、粒子背景邏輯
-├── profile.jpg  # 頭像圖片
-└── README.md    # 說明文件
-```
+事實查核系統,結合主題模板、網路搜尋、可信度評分與以圖反搜進行陳述驗證。
+設計主題分類與證據驗證流程,並以 MCP 編排自動化、迭代式的證據檢索與驗證。
 
----
+### 🎓 AI Learning Assistant · 2025.09 – Present
+`Python` `Node.js` `RAG` `MCP`
 
-## 💻 如何在本機開啟
+校園問答 Agent,處理課程資訊、圖書館預約、教職員查詢與校規等問題。
+透過整合 RAG 與 MCP,大幅提升回答的事實準確度與領域可靠性。
 
-**方法一(最簡單):** 直接用瀏覽器開啟 `index.html`。
+### 🤖 LLM Course Q&A System · 2024.06 – 2024.12
+`LLM` `Flask` `MongoDB` `Redis` `LINE Bot`
 
-**方法二(建議):** 用本機伺服器開啟,可確保剪貼簿等功能正常
+以 LINE Bot 打造的課程問答機器人,運用 LLM 自動評分與回饋,並設計 prompt 式
+評估流程產生分數與說明。後端以 Flask + MongoDB + Redis 建置,附管理後台監控學習表現。
 
-```bash
-python3 -m http.server 8000
-```
+## 🕐 Live Clock
 
-接著在瀏覽器開啟 <http://localhost:8000>
-
----
-
-## 🚀 部署方式(GitHub Pages)
-
-1. 將程式碼 Push 到 GitHub 的 `main` 分支
-2. 進入 Repository 的 **Settings → Pages**
-3. **Source** 選 `Deploy from a branch`,**Branch** 選 `main` / `/ (root)`,按 Save
-4. 稍待 1~2 分鐘即完成部署,即可透過 Live Website 網址開啟
-
----
-
-## 🎨 客製化
-
-- **換頭像**:替換 `profile.jpg`(建議正方形圖片)
-- **修改技能 / 專案**:編輯 `index.html` 對應區塊
-- **調整配色**:修改 `style.css` 最上方的 `:root` CSS 變數(如 `--neon-purple`、`--accent-grad`)
+即時時鐘,每秒自動更新 HH:MM:SS,並支援時間問候語、12H/24H 切換、
+自動偵測時區與複製時間戳記等功能。
 
 ---
 
